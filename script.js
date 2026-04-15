@@ -17,8 +17,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const reveals = document.querySelectorAll('.reveal');
 
 const revealOptions = {
-    threshold: 0.15, // L'élément apparaît quand 15% de celui-ci est visible
-    rootMargin: "0px 0px -50px 0px"
+    threshold: 0.1, // Apparaît quand 10% de l'élément est visible
+    rootMargin: "0px 0px -30px 0px"
 };
 
 const revealOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -27,7 +27,7 @@ const revealOnScroll = new IntersectionObserver(function(entries, observer) {
             return;
         } else {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target); // On arrête d'observer une fois affiché
+            observer.unobserve(entry.target);
         }
     });
 }, revealOptions);
@@ -36,14 +36,12 @@ reveals.forEach(reveal => {
     revealOnScroll.observe(reveal);
 });
 
-// --- Fond dynamique header au scroll ---
+// --- Ombre sous le header au scroll ---
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) {
-        header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.5)";
-        header.style.padding = "15px 5%";
+    if(window.scrollY > 20) {
+        header.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.05)";
     } else {
         header.style.boxShadow = "none";
-        header.style.padding = "20px 5%";
     }
 });
