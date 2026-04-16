@@ -1,8 +1,8 @@
 /* --- Variables et Reset --- */
 :root {
     /* Couleurs rééquilibrées : ni blanc pur, ni noir pur */
-    --bg-color: #f0f2f5; /* Gris clair moderne */
-    --surface-color: #fafafa; /* Presque blanc, très doux */
+    --bg-color: #86b6ff6b; /* Gris clair moderne */
+    --surface-color: #b3f7ff; /* Presque blanc, très doux */
     --primary-blue: #5a8bd6; /* Bleu doux */
     --primary-hover: #4a7ac2;
     --text-main: #3a3f47; /* Gris sombre (pas de noir pur) */
