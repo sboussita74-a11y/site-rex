@@ -14,7 +14,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // --- Gestion du Header au Scroll ---
-// La classe est ajoutée au header pour cibler la nav centrale dans le CSS
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
     if(window.scrollY > 30) {
