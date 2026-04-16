@@ -17,7 +17,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const reveals = document.querySelectorAll('.reveal');
 
 const revealOptions = {
-    threshold: 0.1, // Apparaît quand 10% de l'élément est visible
+    threshold: 0.1, 
     rootMargin: "0px 0px -30px 0px"
 };
 
