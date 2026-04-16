@@ -13,10 +13,11 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// --- Gestion du Header Flou et Arrondi au Scroll ---
+// --- Gestion du Header au Scroll ---
+// La classe est ajoutée au header pour cibler la nav centrale dans le CSS
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) {
+    if(window.scrollY > 30) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');

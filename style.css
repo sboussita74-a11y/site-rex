@@ -1,33 +1,20 @@
 /* --- Variables et Reset --- */
 :root {
-    /* Couleurs Modernes : Bleu en couleur principale, gris en secondaire */
-    --bg-color: #0a1128; /* Bleu nuit très profond (fond principal) */
-    --surface-color: #121e3d; /* Bleu un peu plus clair (cartes, sections 2) */
-    --primary-blue: #3b82f6; /* Bleu vif moderne pour les boutons et textes */
+    --bg-color: #0a1128; 
+    --surface-color: #121e3d; 
+    --primary-blue: #3b82f6; 
     --primary-hover: #2563eb;
-    --text-main: #f8fafc; /* Blanc cassé / Gris très clair pour la lisibilité */
-    --text-muted: #94a3b8; /* Gris secondaire moderne */
+    --text-main: #f8fafc; 
+    --text-muted: #94a3b8; 
     --border-color: rgba(255, 255, 255, 0.1);
     --transition: all 0.3s ease;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
+body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
 html { scroll-behavior: smooth; }
 
-/* --- Typographie et Éléments de base --- */
 h1, h2, h3 { font-weight: 800; color: #ffffff; }
 .highlight { color: var(--primary-blue); }
 a { text-decoration: none; color: inherit; }
@@ -36,105 +23,87 @@ a { text-decoration: none; color: inherit; }
 .container { max-width: 1000px; margin: 0 auto; }
 .text-muted { color: var(--text-muted); }
 
-/* --- Header & Nav (Design Arrondi & Scroll) --- */
+/* --- Header & Nav (Structure Corrigée) --- */
 header {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1000px;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed; top: 0; left: 0; width: 100%;
+    padding: 20px 5%;
+    display: flex; justify-content: space-between; align-items: center;
     z-index: 1000;
-    background: transparent; /* Totalement transparent en haut */
-    border-radius: 40px; /* Forme arrondie */
     transition: all 0.4s ease;
 }
 
-/* Classe ajoutée via Javascript lors du scroll */
-header.scrolled {
-    background: rgba(18, 30, 61, 0.7);
-    backdrop-filter: blur(15px); /* Effet flou */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+.logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; }
 .logo span { color: var(--primary-blue); }
 
-.nav-links { display: flex; list-style: none; gap: 10px; }
+/* Le bloc arrondi au centre */
+.nav-container {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    background: transparent;
+    padding: 5px 10px;
+    border-radius: 40px;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+}
+
+/* Effet du header entier au scroll appliqué uniquement au bloc central */
+header.scrolled .nav-container {
+    background: rgba(18, 30, 61, 0.7);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+}
+
+.nav-links { display: flex; align-items: center; list-style: none; gap: 5px; }
+
+/* Le séparateur demandé */
+.separator {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 5px;
+}
+
 .nav-links a { 
-    font-weight: 600; 
-    color: var(--text-main); 
-    padding: 10px 20px;
-    border-radius: 25px; /* Boutons nav arrondis */
-    transition: var(--transition); 
+    font-weight: 600; color: var(--text-main); 
+    padding: 10px 18px; border-radius: 25px; transition: var(--transition); 
 }
 .nav-links a:hover { 
-    background: rgba(59, 130, 246, 0.15); /* Hover léger en bleu */
-    color: var(--primary-blue); 
+    background: rgba(59, 130, 246, 0.15); color: var(--primary-blue); 
 }
-.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+.menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1001; }
 
 /* --- Boutons et Badges --- */
 .btn {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px;
-    border-radius: 35px; /* Arrondi moderne */
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
+    padding: 14px 32px; border-radius: 35px;
+    font-weight: 600; cursor: pointer; transition: var(--transition);
 }
-.btn-primary {
-    background: var(--primary-blue);
-    color: #ffffff;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
-}
-.btn-primary:hover {
-    background: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
-}
+.btn-primary { background: var(--primary-blue); color: #ffffff; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); }
 
 .discord-badge {
-    display: inline-block;
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--primary-blue);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    display: inline-block; background: rgba(59, 130, 246, 0.15); color: var(--primary-blue);
+    padding: 8px 20px; border-radius: 20px; font-weight: 600; margin-bottom: 20px;
+    font-size: 0.95rem; border: 1px solid rgba(59, 130, 246, 0.3);
 }
-.discord-badge i { margin-right: 6px; }
 
-/* --- Hero Section --- */
-#hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 120px 5% 50px;
-}
+/* --- Hero Section & Image Corrigée --- */
+#hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 50px; }
 .hero-container { max-width: 650px; }
-.profile-wrapper { margin-bottom: 20px; }
+.profile-wrapper { margin-bottom: 20px; display: flex; justify-content: center; }
+
+/* Correction de l'image : Display block et centrage garanti */
 .profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Arrondi parfait */
-    object-fit: cover;
+    width: 150px; height: 150px;
+    border-radius: 50%; object-fit: cover;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 4px solid var(--primary-blue);
     background-color: var(--surface-color); 
+    display: block; margin: 0 auto;
     transition: var(--transition);
-    display: inline-block; /* Garantit sa visibilité */
 }
 .profile-pic:hover { transform: scale(1.05) rotate(2deg); border-color: var(--text-main); }
+
 .hero-container h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 15px; }
 .subtitle { font-size: 1.2rem; font-weight: 600; color: var(--primary-blue); margin-bottom: 15px; }
 .short-desc { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
@@ -145,79 +114,54 @@ header.scrolled {
 
 /* --- About Section --- */
 .about-text {
-    background: var(--bg-color);
-    padding: 40px;
-    border-radius: 25px;
-    border: 1px solid var(--border-color);
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    text-align: center;
+    background: var(--bg-color); padding: 40px; border-radius: 25px;
+    border: 1px solid var(--border-color); font-size: 1.1rem; color: var(--text-muted); text-align: center;
 }
 .about-text p { margin-bottom: 20px; }
 .about-text p:last-child { margin-bottom: 0; }
 .about-text strong { color: var(--text-main); }
 
-/* --- Vidéo Section --- */
+/* --- Services Section --- */
+.services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+.service-card {
+    background: var(--surface-color); padding: 35px 25px; border-radius: 20px;
+    border: 1px solid var(--border-color); text-align: center; max-width: 310px;
+    transition: var(--transition);
+}
+.service-card:hover { border-color: var(--primary-blue); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.service-card i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; }
+.service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-main); }
+.service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* --- Vidéo Section Améliorée --- */
 .video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    background-color: #000; /* Fond noir pour la vidéo */
-    border: 1px solid var(--border-color);
+    position: relative; width: 100%; max-width: 800px; margin: 0 auto; aspect-ratio: 16 / 9;
+    border-radius: 16px; overflow: hidden;
+    /* Cadre et Ombre améliorés */
+    border: 2px solid rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    background-color: #000;
 }
-.video-wrapper iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-}
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 /* --- Réseaux Section --- */
-.networks-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
+.networks-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
 .network-card {
-    background: var(--bg-color);
-    padding: 30px;
-    border-radius: 25px;
-    text-align: center;
-    min-width: 220px;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-    display: block; /* Important pour rendre le a clickable sur toute sa surface */
+    background: var(--surface-color); padding: 30px; border-radius: 25px;
+    text-align: center; min-width: 220px; border: 1px solid var(--border-color);
+    transition: var(--transition); display: block;
 }
 .network-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary-blue);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    background: rgba(59, 130, 246, 0.05);
+    transform: translateY(-8px); border-color: var(--primary-blue);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); background: rgba(59, 130, 246, 0.05);
 }
-.network-card i {
-    font-size: 3rem;
-    color: var(--primary-blue);
-    margin-bottom: 15px;
-    transition: var(--transition);
-}
+.network-card i { font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px; transition: var(--transition); }
 .network-card:hover i { transform: scale(1.1); }
 .network-card h3 { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-main); }
 .network-card p { color: var(--text-muted); font-weight: 600; }
 
 /* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #060b19; /* Bleu presque noir */
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9rem;
-}
+footer { text-align: center; padding: 30px; background: #060b19; color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.9rem; }
 
 /* --- Animations de Scroll --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
@@ -225,15 +169,16 @@ footer {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    header { width: 95%; top: 10px; padding: 15px 20px; }
-    .hero-container h1 { font-size: 2.5rem; }
+    header { padding: 15px 20px; }
+    .nav-container { position: static; transform: none; background: transparent; padding: 0; }
+    .separator { display: none; } /* On cache le séparateur sur mobile pour que le menu reste propre verticalement */
     .nav-links {
-        position: fixed; right: -100%; top: 80px;
-        flex-direction: column; background: var(--surface-color);
-        width: 90%; max-width: 300px; text-align: center; padding: 20px; gap: 15px; 
-        transition: 0.4s; border-radius: 20px;
-        border: 1px solid var(--border-color);
+        position: fixed; right: -100%; top: 75px; flex-direction: column;
+        background: rgba(18, 30, 61, 0.95); backdrop-filter: blur(15px);
+        width: 90%; max-width: 300px; text-align: center; padding: 25px 20px; gap: 15px; 
+        transition: 0.4s; border-radius: 20px; border: 1px solid var(--border-color);
     }
     .nav-links.active { right: 5%; }
     .menu-toggle { display: block; }
+    .hero-container h1 { font-size: 2.5rem; }
 }

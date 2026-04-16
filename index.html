@@ -12,21 +12,27 @@
 
     <header id="header">
         <div class="logo">Rex<span>.</span></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#hero">Accueil</a></li>
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#video-demo">Présentation</a></li>
-                <li><a href="#networks">Réseaux</a></li>
-            </ul>
-        </nav>
+        
+        <div class="nav-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Accueil</a></li>
+                    <li class="separator"></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#video-demo">Présentation</a></li>
+                    <li><a href="#networks">Réseaux</a></li>
+                </ul>
+            </nav>
+        </div>
+
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     </header>
 
     <section id="hero">
         <div class="hero-container reveal">
             <div class="profile-wrapper">
-                <img src="https://media.discordapp.net/attachments/1436438007073738896/1493965963778064567/rex.png" alt="Photo de profil de Rex" class="profile-pic">
+                <img src="https://media.discordapp.net/attachments/1436438007073738896/1493965963778064567/rex.png" alt="Photo de profil de Rex" class="profile-pic" referrerpolicy="no-referrer">
             </div>
             <h1>Salut, je suis <span class="highlight">Rex</span></h1>
             
@@ -38,7 +44,7 @@
             <p class="short-desc">
                 Récemment lancé dans le montage, j'accompagne les créateurs dans la dynamisation de leurs vidéos tout en développant mon propre contenu sur YouTube.
             </p>
-            <a href="#video-demo" class="btn btn-primary">Voir ma présentation <i class="fas fa-arrow-down"></i></a>
+            <a href="#services" class="btn btn-primary">Découvrir mes services <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
@@ -63,7 +69,34 @@
         </div>
     </section>
 
-    <section id="video-demo" class="section">
+    <section id="services" class="section">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2>Mes <span class="highlight">Services</span></h2>
+                <p class="text-muted">Des prestations simples, flexibles et pensées pour le format YouTube.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Montage YouTube (Gaming)</h3>
+                    <p>Spécialisé dans le format gaming, je dynamise vos gameplays en gardant les meilleurs moments et en supprimant les temps morts.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-film"></i>
+                    <h3>Classique & Shorts</h3>
+                    <p>Je m'adapte à votre contenu : que ce soit pour des vidéos longues classiques ou des formats courts très rythmés (Shorts).</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Miniatures (Optionnel)</h3>
+                    <p>Possibilité de créer des miniatures simples, claires et fidèles à votre style pour accompagner vos vidéos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-demo" class="section bg-secondary">
         <div class="container reveal">
             <div class="section-title">
                 <h2>Vidéo de <span class="highlight">Présentation</span></h2>
@@ -82,7 +115,7 @@
         </div>
     </section>
 
-    <section id="networks" class="section bg-secondary">
+    <section id="networks" class="section">
         <div class="container reveal">
             <div class="section-title">
                 <h2>Mes <span class="highlight">Réseaux</span></h2>
