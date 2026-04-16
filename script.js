@@ -13,12 +13,22 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// --- Animations au Scroll (Intersection Observer) ---
+// --- Gestion du Header Flou et Arrondi au Scroll ---
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// --- Animations d'apparition (Intersection Observer) ---
 const reveals = document.querySelectorAll('.reveal');
 
 const revealOptions = {
-    threshold: 0.1, 
-    rootMargin: "0px 0px -30px 0px"
+    threshold: 0.15, 
+    rootMargin: "0px 0px -40px 0px"
 };
 
 const revealOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -34,14 +44,4 @@ const revealOnScroll = new IntersectionObserver(function(entries, observer) {
 
 reveals.forEach(reveal => {
     revealOnScroll.observe(reveal);
-});
-
-// --- Ombre sous le header au scroll ---
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-    if(window.scrollY > 20) {
-        header.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.05)";
-    } else {
-        header.style.boxShadow = "none";
-    }
 });
