@@ -1,29 +1,4 @@
-/* --- Variables et Reset --- */
-:root {
-    --bg-color: #0a1128; 
-    --surface-color: #121e3d; 
-    --primary-blue: #3b82f6; 
-    --primary-hover: #2563eb;
-    --text-main: #f8fafc; 
-    --text-muted: #94a3b8; 
-    --border-color: rgba(255, 255, 255, 0.1);
-    --transition: all 0.3s ease;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
-html { scroll-behavior: smooth; }
-
-h1, h2, h3 { font-weight: 800; color: #ffffff; }
-.highlight { color: var(--primary-blue); }
-a { text-decoration: none; color: inherit; }
-.section { padding: 100px 5%; }
-.bg-secondary { background-color: var(--surface-color); }
-.container { max-width: 1000px; margin: 0 auto; }
-.text-muted { color: var(--text-muted); }
-
-/* --- Header & Nav (Correction Absolue de l'alignement) --- */
+/* --- Header & Nav --- */
 header {
     position: fixed; top: 0; left: 0; width: 100%;
     padding: 20px 5%;
@@ -31,24 +6,29 @@ header {
     z-index: 1000; transition: all 0.4s ease;
 }
 
-.header-left, .header-right { flex: 1; display: flex; align-items: center; }
-.header-right { justify-content: flex-end; }
-.header-center { flex: 2; display: flex; justify-content: center; }
+.header-left { flex: 1; display: flex; align-items: center; }
+.header-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; }
 
-/* Le logo est totalement séparé du bloc de navigation */
+/* DÉCALAGE VERS LA DROITE : On utilise justify-content: flex-end et un padding pour ne pas le coller au bord */
+.header-center { 
+    flex: 2; 
+    display: flex; 
+    justify-content: flex-end; 
+    padding-right: 8%; 
+}
+
 .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; }
 .logo span { color: var(--primary-blue); }
 
-/* Le bloc arrondi qui contient UNIQUEMENT les liens */
+/* BLOC PLUS LARGE ET PLUS CONFORTABLE */
 .nav-container {
     background: transparent;
-    padding: 8px 15px;
-    border-radius: 40px;
+    padding: 12px 30px; /* Augmenté (avant 8px 15px) */
+    border-radius: 50px; /* Conserve le style arrondi */
     transition: all 0.4s ease;
     border: 1px solid transparent;
 }
 
-/* Apparition du fond arrondi au scroll (géré par le script sur la balise header) */
 header.scrolled .nav-container {
     background: rgba(18, 30, 61, 0.7);
     backdrop-filter: blur(15px);
@@ -56,152 +36,59 @@ header.scrolled .nav-container {
     border: 1px solid var(--border-color);
 }
 
-.nav-links { display: flex; align-items: center; list-style: none; gap: 5px; }
+/* ESPACEMENT AUGMENTÉ ENTRE LES BOUTONS */
+.nav-links { 
+    display: flex; 
+    align-items: center; 
+    list-style: none; 
+    gap: 15px; /* Augmenté (avant 5px) */
+}
 
-/* Correction du Séparateur (bien visible et aligné) */
 .separator {
     width: 2px;
     height: 18px;
     background-color: rgba(255, 255, 255, 0.3);
-    margin: 0 10px;
+    margin: 0 5px; /* Ajusté pour correspondre au nouveau gap */
     border-radius: 2px;
 }
 
 .nav-links a { 
     font-weight: 600; color: var(--text-main); 
-    padding: 10px 18px; border-radius: 25px; transition: var(--transition); 
+    padding: 12px 22px; /* Augmenté pour le confort de clic */
+    border-radius: 25px; transition: var(--transition); 
 }
 .nav-links a:hover { 
     background: rgba(59, 130, 246, 0.15); color: var(--primary-blue); 
 }
 .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1001; }
 
-/* --- Boutons et Badges --- */
-.btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px; border-radius: 35px; font-weight: 600; cursor: pointer; transition: var(--transition);
-}
-.btn-primary { background: var(--primary-blue); color: #ffffff; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
-.btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); }
-
-.discord-badge {
-    display: inline-block; background: rgba(59, 130, 246, 0.15); color: var(--primary-blue);
-    padding: 8px 20px; border-radius: 20px; font-weight: 600; margin-bottom: 20px;
-    font-size: 0.95rem; border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-/* --- Hero Section & Image Corrigée Définitivement --- */
+/* --- Hero Section & Image --- */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 50px; }
 .hero-container { max-width: 650px; }
 
-/* Conteneur strict de l'image (empêche le texte d'apparaître si l'image est mal chargée, gère l'arrondi) */
+/* Conteneur strict de l'image */
 .profile-wrapper { 
-    width: 150px; height: 150px;
+    width: 150px; 
+    height: 150px;
     margin: 0 auto 20px auto; 
     border-radius: 50%;
-    overflow: hidden; /* Garantit que l'image reste dans le cercle */
+    overflow: hidden; 
     border: 4px solid var(--primary-blue);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    background-color: var(--surface-color); /* Fond de secours */
+    background-color: var(--surface-color);
+    display: flex; /* Force le contenu à se centrer */
+    align-items: center;
+    justify-content: center;
 }
 
-/* L'image prend toute la place du conteneur forcé */
+/* Image forcée avec dimensions absolues */
 .profile-pic {
-    width: 100%; height: 100%;
+    width: 150px !important; 
+    height: 150px !important;
+    min-width: 150px;
+    min-height: 150px;
     object-fit: cover;
-    display: block; /* Supprime l'espace vide sous l'image */
+    display: block !important; 
     transition: var(--transition);
 }
 .profile-pic:hover { transform: scale(1.05) rotate(2deg); }
-
-.hero-container h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 15px; }
-.subtitle { font-size: 1.2rem; font-weight: 600; color: var(--primary-blue); margin-bottom: 15px; }
-.short-desc { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
-
-/* --- Titres de Section --- */
-.section-title { text-align: center; margin-bottom: 50px; }
-.section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
-
-/* --- About Section --- */
-.about-text {
-    background: var(--bg-color); padding: 40px; border-radius: 25px;
-    border: 1px solid var(--border-color); font-size: 1.1rem; color: var(--text-muted); text-align: center;
-}
-.about-text p { margin-bottom: 20px; }
-.about-text p:last-child { margin-bottom: 0; }
-.about-text strong { color: var(--text-main); }
-
-/* --- Services Section (Correction en Cartes Séparées) --- */
-.services-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-    gap: 30px; 
-}
-.service-card {
-    background: var(--surface-color); 
-    padding: 35px 25px; 
-    border-radius: 20px;
-    border: 1px solid var(--border-color); 
-    text-align: center; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
-}
-.service-card:hover { 
-    border-color: var(--primary-blue); 
-    transform: translateY(-8px); 
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15); 
-}
-.service-card i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; }
-.service-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--text-main); }
-.service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
-
-/* --- Vidéo Section Améliorée --- */
-.video-wrapper {
-    position: relative; width: 100%; max-width: 800px; margin: 0 auto; aspect-ratio: 16 / 9;
-    border-radius: 16px; overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.15); 
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-    background-color: #000;
-}
-.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-/* --- Réseaux Section --- */
-.networks-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-.network-card {
-    background: var(--surface-color); padding: 30px; border-radius: 25px;
-    text-align: center; min-width: 220px; border: 1px solid var(--border-color);
-    transition: var(--transition); display: block;
-}
-.network-card:hover {
-    transform: translateY(-8px); border-color: var(--primary-blue);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); background: rgba(59, 130, 246, 0.05);
-}
-.network-card i { font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px; transition: var(--transition); }
-.network-card:hover i { transform: scale(1.1); }
-.network-card h3 { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-main); }
-.network-card p { color: var(--text-muted); font-weight: 600; }
-
-/* --- Footer --- */
-footer { text-align: center; padding: 30px; background: #060b19; color: var(--text-muted); border-top: 1px solid var(--border-color); font-size: 0.9rem; }
-
-/* --- Animations de Scroll --- */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-    .header-left { flex: none; }
-    .header-center { justify-content: flex-end; padding-right: 20px; }
-    .nav-container { padding: 0; background: transparent; border: none; box-shadow: none; }
-    header.scrolled .nav-container { background: transparent; box-shadow: none; border: none; backdrop-filter: none; }
-    .separator { display: none; } 
-    .nav-links {
-        position: fixed; right: -100%; top: 75px; flex-direction: column;
-        background: rgba(18, 30, 61, 0.95); backdrop-filter: blur(15px);
-        width: 90%; max-width: 300px; text-align: center; padding: 25px 20px; gap: 15px; 
-        transition: 0.4s; border-radius: 20px; border: 1px solid var(--border-color);
-    }
-    .nav-links.active { right: 5%; }
-    .menu-toggle { display: block; }
-    .hero-container h1 { font-size: 2.5rem; }
-}
