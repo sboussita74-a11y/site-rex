@@ -1,4 +1,16 @@
-<header id="header">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rex | Monteur Vidéo & Créateur</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header id="header">
         <div class="header-left">
             <div class="logo">Rex<span>.</span></div>
         </div>
@@ -7,7 +19,9 @@
             <nav class="nav-container">
                 <ul class="nav-links">
                     <li><a href="#hero">Accueil</a></li>
+                    
                     <li class="separator"></li>
+                    
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#video-demo">Présentation</a></li>
@@ -23,16 +37,8 @@
 
     <section id="hero">
         <div class="hero-container reveal">
-            
             <div class="profile-wrapper">
-                <img src="https://media.discordapp.net/attachments/1436438007073738896/1493965963778064567/rex.png" 
-                     alt="" 
-                     width="150" 
-                     height="150" 
-                     class="profile-pic" 
-                     style="display: block; width: 150px; height: 150px; min-width: 150px; min-height: 150px; object-fit: cover;"
-                     referrerpolicy="no-referrer" 
-                     crossorigin="anonymous">
+                <img src="https://media.discordapp.net/attachments/1436438007073738896/1493965963778064567/rex.png" alt="" class="profile-pic" referrerpolicy="no-referrer" crossorigin="anonymous">
             </div>
             
             <h1>Salut, je suis <span class="highlight">Rex</span></h1>
@@ -48,3 +54,104 @@
             <a href="#services" class="btn btn-primary">Découvrir mes services <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
+
+    <section id="about" class="section bg-secondary">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2>À propos de <span class="highlight">moi</span></h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Je suis un <strong>monteur vidéo récent</strong>, passionné par l'écosystème YouTube. Plutôt que d'en faire trop, j'aime les montages propres et efficaces, avec une vraie réflexion sur le rythme de la vidéo.
+                    </p>
+                    <p>
+                        Au-delà du montage pour d'autres, je suis <strong>également créateur de contenu</strong>. Cela m'aide à bien comprendre les attentes de l'audience et les besoins techniques pour rendre une vidéo fluide, naturelle et agréable à regarder.
+                    </p>
+                    <p>
+                        J'aime apprendre, m'adapter à différents styles et échanger avec les créateurs pour leur proposer un montage qui correspond vraiment à leur identité.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2>Mes <span class="highlight">Services</span></h2>
+                <p class="text-muted">Des prestations simples, flexibles et pensées pour le format YouTube.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-film"></i>
+                    <h3>Montage YouTube</h3>
+                    <p>Dynamisation de vos vidéos, suppression des temps morts et adaptation totale à votre style de création.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Spécialisé Gaming</h3>
+                    <p>Mise en valeur de vos gameplays, let's plays ou best-of avec un rythme adapté pour garder l'audience engagée.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Classique & Shorts</h3>
+                    <p>Format horizontal classique ou format vertical très nerveux (Shorts, TikTok, Reels) selon vos besoins.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Miniatures (Option)</h3>
+                    <p>Création de miniatures accrocheuses, claires et secondaires, pour maximiser le taux de clic de vos vidéos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-demo" class="section bg-secondary">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2>Vidéo de <span class="highlight">Présentation</span></h2>
+                <p class="text-muted">Un aperçu direct de mon travail et de mon univers de montage.</p>
+            </div>
+            
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/-9t15e5Eyr0" 
+                    title="Vidéo de présentation de Rex" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="networks" class="section">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2>Mes <span class="highlight">Réseaux</span></h2>
+                <p class="text-muted">Pour me contacter ou suivre mon travail.</p>
+            </div>
+            <div class="networks-grid">
+                <a href="https://discord.com/users/rexbs3" target="_blank" class="network-card">
+                    <i class="fab fa-discord"></i>
+                    <h3>Discord</h3>
+                    <p>rexbs3</p>
+                </a>
+                <a href="https://www.youtube.com/@R3XX_GOAT" target="_blank" class="network-card">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube</h3>
+                    <p>Rex</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Rex. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
