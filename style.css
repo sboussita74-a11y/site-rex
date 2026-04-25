@@ -38,7 +38,7 @@ a { text-decoration: none; color: inherit; }
 .container { max-width: 1000px; margin: 0 auto; }
 .text-muted { color: var(--text-muted); }
 
-/* --- Header & Nav --- */
+/* --- Header & Nav (Position et Taille Corrigées) --- */
 header {
     position: fixed; top: 0; left: 0; width: 100%;
     padding: 20px 5%;
@@ -49,21 +49,21 @@ header {
 .header-left { flex: 1; display: flex; align-items: center; }
 .header-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; }
 
-/* POSITION BARRE : Décalée vers la droite sans coller au bord (padding-right gère l'écart) */
+/* POSITION DE LA BARRE : Décalée à droite de manière équilibrée (ni centrée, ni collée) */
 .header-center { 
     flex: 2; 
     display: flex; 
     justify-content: flex-end; 
-    padding-right: 12%; 
+    padding-right: 5%; /* C'est cette valeur qui crée l'écart propre avec la droite */
 }
 
 .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; text-shadow: none; }
 .logo span { color: var(--primary-blue); }
 
-/* ESPACE INTERNE : Padding largement augmenté pour un aspect moins compressé */
+/* TAILLE DE LA BARRE : Réduite pour ne pas être trop large, tout en gardant de l'espace d'air */
 .nav-container {
     background: transparent;
-    padding: 18px 45px; /* Modifié : Beaucoup plus d'espace autour des boutons */
+    padding: 12px 25px; /* Ajusté : Moins imposant que l'ancienne version */
     border-radius: 50px;
     transition: all 0.4s ease;
     border: 1px solid transparent;
@@ -76,8 +76,8 @@ header.scrolled .nav-container {
     border: 1px solid var(--border-color);
 }
 
-/* L'espace entre les boutons (gap) reste intact */
-.nav-links { display: flex; align-items: center; list-style: none; gap: 15px; }
+/* ESPACEMENT DES BOUTONS : Équilibré pour ne pas étirer la barre inutilement */
+.nav-links { display: flex; align-items: center; list-style: none; gap: 10px; }
 
 .separator {
     width: 2px;
@@ -87,9 +87,10 @@ header.scrolled .nav-container {
     border-radius: 2px;
 }
 
+/* BOUTONS : Style propre, lisible et non déformé */
 .nav-links a { 
     font-weight: 600; color: var(--text-main); 
-    padding: 12px 22px; 
+    padding: 10px 18px; /* Taille interne des boutons affinée */
     border-radius: 25px; transition: var(--transition); 
 }
 .nav-links a:hover { 
