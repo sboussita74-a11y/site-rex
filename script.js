@@ -1,10 +1,12 @@
-// --- Dictionnaire de traduction FR / EN ---
+// --- Dictionnaire de traduction FR / EN / ES ---
 const translations = {
     fr: {
-        lang_short_fr: "🌐 FR", // Abréviations pour le bouton fermé
-        lang_short_en: "🌐 EN",
-        lang_fr: "Français",     // Menu déroulant
+        lang_short_fr: "FR", 
+        lang_short_en: "EN",
+        lang_short_es: "ES",
+        lang_fr: "Français",     
         lang_en: "Anglais",
+        lang_es: "Espagnol",
         nav_home: "Accueil",
         nav_about: "À propos",
         nav_services: "Services",
@@ -39,10 +41,12 @@ const translations = {
         footer_text: "&copy; 2026 Rex. Tous droits réservés."
     },
     en: {
-        lang_short_fr: "🌐 FR", // Restent FR/EN pour l'abréviation universelle
-        lang_short_en: "🌐 EN",
-        lang_fr: "French",      // Menu déroulant
+        lang_short_fr: "FR", 
+        lang_short_en: "EN",
+        lang_short_es: "ES",
+        lang_fr: "French",      
         lang_en: "English",
+        lang_es: "Spanish",
         nav_home: "Home",
         nav_about: "About",
         nav_services: "Services",
@@ -75,15 +79,77 @@ const translations = {
         networks_title: "My <span class='highlight'>Socials</span>",
         networks_desc: "To contact me or follow my work.",
         footer_text: "&copy; 2026 Rex. All rights reserved."
+    },
+    es: {
+        lang_short_fr: "FR", 
+        lang_short_en: "EN",
+        lang_short_es: "ES",
+        lang_fr: "Francés",      
+        lang_en: "Inglés",
+        lang_es: "Español",
+        nav_home: "Inicio",
+        nav_about: "Sobre mí",
+        nav_services: "Servicios",
+        nav_portfolio: "Portafolio",
+        nav_video: "Presentación",
+        nav_networks: "Redes",
+        hero_title: "Hola, soy <span class='highlight'>Rex</span>",
+        hero_subtitle: "Editor de Video y Creador en YouTube",
+        hero_desc: "Recientemente incursioné en la edición, ayudo a los creadores a dinamizar sus videos mientras desarrollo mi propio contenido en YouTube.",
+        hero_btn: "Descubrir mis servicios <i class='fas fa-arrow-down'></i>",
+        about_title: "Sobre <span class='highlight'>mí</span>",
+        about_p1: "Soy un <strong>editor de video reciente</strong>, apasionado por el ecosistema de YouTube. En lugar de exagerar, me gustan las ediciones limpias y efectivas, con un pensamiento real sobre el ritmo del video.",
+        about_p2: "Más allá de editar para otros, <strong>también soy creador de contenido</strong>. Esto me ayuda a comprender las expectativas de la audiencia y las necesidades técnicas para hacer un video fluido, natural y agradable de ver.",
+        about_p3: "Me encanta aprender, adaptarme a diferentes estilos y dialogar con los creadores para ofrecerles una edición que realmente coincida con su identidad.",
+        services_title: "Mis <span class='highlight'>Servicios</span>",
+        services_desc: "Servicios simples, flexibles y pensados para el formato de YouTube.",
+        srv1_title: "Edición YouTube",
+        srv1_desc: "Dinamización de tus videos, eliminación de tiempos muertos y adaptación total a tu estilo de creación.",
+        srv2_title: "Especialidad Gaming",
+        srv2_desc: "Destacando tus gameplays, let's plays o best-ofs con un ritmo adecuado para mantener a la audiencia interesada.",
+        srv3_title: "Clásico y Shorts",
+        srv3_desc: "Formato horizontal clásico o formato vertical muy enérgico (Shorts, TikTok, Reels) según tus necesidades.",
+        srv4_title: "Miniaturas (Opción)",
+        srv4_desc: "Creación de miniaturas atractivas, claras y secundarias, para maximizar la tasa de clics de tus videos.",
+        portfolio_title: "Mi <span class='highlight'>Portafolio</span>",
+        portfolio_desc: "Un vistazo a mis proyectos.",
+        portfolio_empty: "No hay proyectos disponibles por el momento.",
+        video_title: "Video de <span class='highlight'>Presentación</span>",
+        video_desc: "Un vistazo directo a mi trabajo y mi universo de edición.",
+        networks_title: "Mis <span class='highlight'>Redes</span>",
+        networks_desc: "Para contactarme o seguir mi trabajo.",
+        footer_text: "&copy; 2026 Rex. Todos los derechos reservados."
     }
 };
+
+// --- Effet Halo Souris (Glow fluide) ---
+const cursorGlow = document.getElementById('cursor-glow');
+let mouseX = 0, mouseY = 0;
+let glowX = 0, glowY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateGlow() {
+    // Effet d'assouplissement (easing) pour rendre le suivi ultra fluide
+    glowX += (mouseX - glowX) * 0.15;
+    glowY += (mouseY - glowY) * 0.15;
+    
+    cursorGlow.style.left = `${glowX}px`;
+    cursorGlow.style.top = `${glowY}px`;
+    
+    requestAnimationFrame(animateGlow);
+}
+animateGlow();
 
 // --- Menu Langue Personnalisé ---
 const langWrapper = document.querySelector('.custom-lang-selector');
 const langBtn = document.getElementById('langBtn');
 const langOptions = document.querySelectorAll('.lang-dropdown li');
 const currentLangText = document.getElementById('currentLangText');
-let currentLang = 'fr'; // Langue par défaut
+let currentLang = 'fr'; 
 
 // Ouvrir / Fermer le menu déroulant
 langBtn.addEventListener('click', (e) => {
@@ -102,7 +168,7 @@ langOptions.forEach(option => {
         const selectedLang = e.target.getAttribute('data-lang');
         currentLang = selectedLang;
         
-        // Mettre à jour l'abréviation du bouton fermé (🌐 FR ou 🌐 EN)
+        // Mettre à jour l'abréviation du bouton fermé (FR, EN, ES)
         currentLangText.setAttribute('data-i18n', `lang_short_${selectedLang}`);
         
         // Exécuter la traduction globale

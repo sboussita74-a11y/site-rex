@@ -18,10 +18,31 @@ body {
     overflow-x: hidden; 
     line-height: 1.6; 
     position: relative;
+    cursor: default;
 }
 html { scroll-behavior: smooth; }
 
-/* --- Effets Lumineux (Glow) Modernes en fond --- */
+/* --- Nouvel Effet Lumineux (Curseur Souris) --- */
+#cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none; /* Laisse passer les clics au travers */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Caché jusqu'au premier mouvement */
+    transition: opacity 0.4s ease;
+    mix-blend-mode: screen;
+}
+body:hover #cursor-glow {
+    opacity: 1; /* Apparaît quand la souris est sur la page */
+}
+
+/* --- Effets Lumineux (Glow) Modernes en fond (Fixes) --- */
 .glow-bg {
     position: fixed; width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
     border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none; opacity: 0.6;
@@ -47,11 +68,10 @@ header {
     z-index: 1000; transition: all 0.4s ease;
 }
 
-/* Le flex: 1 de chaque côté garantit que le header-center est au milieu exact */
 .header-left { flex: 1; display: flex; align-items: center; }
 
 .header-center { 
-    flex: 0 0 auto; /* Prend uniquement la place nécessaire */
+    flex: 0 0 auto; 
     display: flex; 
     justify-content: center; 
 }
@@ -67,11 +87,11 @@ header {
 .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; text-shadow: none; }
 .logo span { color: var(--primary-blue); }
 
-/* --- Barre de navigation (Large, propre, équilibrée) --- */
+/* --- Barre de navigation --- */
 .nav-container {
     background: rgba(18, 30, 61, 0.4);
     backdrop-filter: blur(10px);
-    padding: 16px 45px; /* Padding augmenté */
+    padding: 14px 45px; /* PADDING HAUT/BAS FIXÉ A 14PX */
     border-radius: 50px;
     transition: all 0.4s ease;
     border: 1px solid var(--border-color);
@@ -83,53 +103,44 @@ header.scrolled .nav-container {
     backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Espacement régulier et NO-WRAP (Correction du retour à la ligne) */
 .nav-links { 
     display: flex; 
     align-items: center; 
     list-style: none; 
-    gap: 32px; /* Espacement parfait entre les boutons */
+    gap: 32px; 
 }
 
-.nav-links li {
-    flex-shrink: 0; /* Empêche les éléments de s'écraser */
-}
+.nav-links li { flex-shrink: 0; }
 
 .separator { width: 2px; height: 18px; background-color: rgba(255, 255, 255, 0.2); margin: 0; border-radius: 2px; }
 
 .nav-links a { 
-    font-weight: 600; 
-    color: var(--text-muted); 
-    padding: 10px 20px; 
-    border-radius: 25px; 
-    transition: var(--transition); 
-    white-space: nowrap; /* GARANTIT QUE LE TEXTE RESTE SUR UNE LIGNE */
+    font-weight: 600; color: var(--text-muted); padding: 10px 20px; border-radius: 25px; transition: var(--transition); white-space: nowrap; 
 }
-
 .nav-links a:hover { color: #ffffff; }
 
-/* État Actif */
 .nav-links a.active {
     background: rgba(59, 130, 246, 0.2); color: var(--primary-blue); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
-/* --- Bouton de Langue Isolé (Effet Glass) --- */
+/* --- Bouton de Langue Isolé (Hauteur identique, largeur équilibrée) --- */
 .custom-lang-selector {
     position: relative;
     z-index: 1002;
+    height: 100%;
 }
 
 .lang-btn {
-    background: rgba(18, 30, 61, 0.4); /* Même fond que la barre */
-    backdrop-filter: blur(10px); /* Même flou */
+    background: rgba(18, 30, 61, 0.4); 
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 12px 20px;
+    padding: 14px 26px; /* PADDING HAUT/BAS 14PX : HAUTEUR EXACTE QUE LA BARRE */
     border-radius: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px; /* Aère l'intérieur du bouton */
     font-weight: 600;
     font-size: 0.95rem;
     transition: var(--transition);
@@ -146,16 +157,24 @@ header.scrolled .lang-btn {
     background: rgba(59, 130, 246, 0.15);
 }
 
-.lang-btn i {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
+/* Icône SVG Customisée Bleue */
+.lang-icon {
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
-.custom-lang-selector.active .lang-btn i {
+.arrow-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: var(--text-muted);
+}
+
+.custom-lang-selector.active .lang-btn .arrow-icon {
     transform: rotate(180deg);
 }
 
-/* Menu Déroulant Custom */
+/* Menu Déroulant (Dropdown) */
 .lang-dropdown {
     position: absolute;
     top: 130%;
@@ -166,7 +185,7 @@ header.scrolled .lang-btn {
     border-radius: 15px;
     padding: 10px 0;
     list-style: none;
-    min-width: 140px;
+    min-width: 150px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
@@ -203,7 +222,7 @@ header.scrolled .lang-btn {
 
 .discord-badge { display: inline-block; background: rgba(59, 130, 246, 0.15); color: var(--primary-blue); padding: 8px 20px; border-radius: 20px; font-weight: 600; margin-bottom: 20px; font-size: 0.95rem; border: 1px solid rgba(59, 130, 246, 0.3); }
 
-/* --- Hero Section & Image --- */
+/* --- Hero Section --- */
 #hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 50px; z-index: 1; }
 .hero-container { max-width: 650px; }
 
@@ -212,7 +231,6 @@ header.scrolled .lang-btn {
     border: 4px solid var(--primary-blue); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3); 
     background-color: var(--surface-color); display: flex; align-items: center; justify-content: center;
 }
-
 .profile-pic { width: 150px !important; height: 150px !important; min-width: 150px; min-height: 150px; object-fit: cover; display: block !important; transition: var(--transition); }
 .profile-pic:hover { transform: scale(1.05) rotate(2deg); }
 
@@ -239,10 +257,7 @@ header.scrolled .lang-btn {
 .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 
 /* --- Portfolio Section --- */
-.portfolio-empty {
-    text-align: center; padding: 60px 20px; background: rgba(18, 30, 61, 0.4);
-    border: 1px dashed rgba(59, 130, 246, 0.3); border-radius: 20px; color: var(--text-muted);
-}
+.portfolio-empty { text-align: center; padding: 60px 20px; background: rgba(18, 30, 61, 0.4); border: 1px dashed rgba(59, 130, 246, 0.3); border-radius: 20px; color: var(--text-muted); }
 .portfolio-empty i { font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px; opacity: 0.6; }
 
 /* --- Vidéo Section --- */
@@ -270,15 +285,15 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- Responsive Adaptations --- */
+/* --- Responsive --- */
 @media (max-width: 1200px) {
-    .nav-container { padding: 12px 30px; }
+    .nav-container { padding: 14px 30px; }
     .nav-links { gap: 15px; }
 }
 
 @media (max-width: 992px) {
     header { grid-template-columns: auto 1fr auto; }
-    .header-center { display: none; /* Cache la barre principale sur tablette pour éviter la compression */ }
+    .header-center { display: none; }
     .menu-toggle { display: block; margin-left: 10px; }
     
     .nav-links { 
@@ -286,7 +301,7 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
         background: rgba(18, 30, 61, 0.95); backdrop-filter: blur(15px); 
         width: 90%; max-width: 300px; text-align: center; padding: 25px 20px; 
         gap: 15px; transition: 0.4s; border-radius: 20px; border: 1px solid var(--border-color); 
-        display: flex; /* Force l'affichage en colonne */
+        display: flex;
     }
     .nav-links.active { right: 5%; }
     .separator { display: none; }
@@ -295,4 +310,5 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
 @media (max-width: 768px) {
     .hero-container h1 { font-size: 2.5rem; }
     .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+    #cursor-glow { display: none; /* Désactivé sur mobile pour la performance */ } 
 }

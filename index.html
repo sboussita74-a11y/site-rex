@@ -10,6 +10,8 @@
 </head>
 <body>
 
+    <div id="cursor-glow"></div>
+
     <div class="glow-bg glow-1"></div>
     <div class="glow-bg glow-2"></div>
 
@@ -37,12 +39,14 @@
         <div class="header-right">
             <div class="custom-lang-selector">
                 <button class="lang-btn" id="langBtn">
-                    <span id="currentLangText" data-i18n="lang_short_fr">🌐 FR</span> 
-                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-globe lang-icon"></i>
+                    <span id="currentLangText" data-i18n="lang_short_fr">FR</span> 
+                    <i class="fas fa-chevron-down arrow-icon"></i>
                 </button>
                 <ul class="lang-dropdown" id="langDropdown">
                     <li data-lang="fr" data-i18n="lang_fr">Français</li>
                     <li data-lang="en" data-i18n="lang_en">Anglais</li>
+                    <li data-lang="es" data-i18n="lang_es">Espagnol</li>
                 </ul>
             </div>
 
