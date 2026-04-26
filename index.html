@@ -10,6 +10,9 @@
 </head>
 <body>
 
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
     <header id="header">
         <div class="header-left">
             <div class="logo">Rex<span>.</span></div>
@@ -18,13 +21,26 @@
         <div class="header-center">
             <nav class="nav-container">
                 <ul class="nav-links">
-                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#hero" class="active" data-i18n="nav_home">Accueil</a></li>
                     <li class="separator"></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#video-demo">Présentation</a></li>
-                    <li><a href="#networks">Réseaux</a></li>
+                    <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+                    <li class="separator"></li>
+                    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                    <li class="separator"></li>
+                    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+                    <li class="separator"></li>
+                    <li><a href="#video-demo" data-i18n="nav_video">Présentation</a></li>
+                    <li class="separator"></li>
+                    <li><a href="#networks" data-i18n="nav_networks">Réseaux</a></li>
                 </ul>
+                
+                <div class="lang-divider"></div>
+                <div class="lang-selector">
+                    <select id="langSwitch">
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
             </nav>
         </div>
 
@@ -35,7 +51,6 @@
 
     <section id="hero">
         <div class="hero-container reveal">
-            
             <div class="profile-wrapper">
                 <img src="https://i.imgur.com/3vHkohu.jpeg" 
                      alt="" 
@@ -46,34 +61,34 @@
                      crossorigin="anonymous">
             </div>
             
-            <h1>Salut, je suis <span class="highlight">Rex</span></h1>
+            <h1 data-i18n="hero_title">Salut, je suis <span class="highlight">Rex</span></h1>
             
             <div class="discord-badge">
                 <i class="fab fa-discord"></i> rexbs3
             </div>
 
-            <h2 class="subtitle">Monteur Vidéo & Créateur YouTube</h2>
-            <p class="short-desc">
+            <h2 class="subtitle" data-i18n="hero_subtitle">Monteur Vidéo & Créateur YouTube</h2>
+            <p class="short-desc" data-i18n="hero_desc">
                 Récemment lancé dans le montage, j'accompagne les créateurs dans la dynamisation de leurs vidéos tout en développant mon propre contenu sur YouTube.
             </p>
-            <a href="#services" class="btn btn-primary">Découvrir mes services <i class="fas fa-arrow-down"></i></a>
+            <a href="#services" class="btn btn-primary" data-i18n="hero_btn">Découvrir mes services <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
     <section id="about" class="section bg-secondary">
         <div class="container reveal">
             <div class="section-title">
-                <h2>À propos de <span class="highlight">moi</span></h2>
+                <h2 data-i18n="about_title">À propos de <span class="highlight">moi</span></h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>
+                    <p data-i18n="about_p1">
                         Je suis un <strong>monteur vidéo récent</strong>, passionné par l'écosystème YouTube. Plutôt que d'en faire trop, j'aime les montages propres et efficaces, avec une vraie réflexion sur le rythme de la vidéo.
                     </p>
-                    <p>
+                    <p data-i18n="about_p2">
                         Au-delà du montage pour d'autres, je suis <strong>également créateur de contenu</strong>. Cela m'aide à bien comprendre les attentes de l'audience et les besoins techniques pour rendre une vidéo fluide, naturelle et agréable à regarder.
                     </p>
-                    <p>
+                    <p data-i18n="about_p3">
                         J'aime apprendre, m'adapter à différents styles et échanger avec les créateurs pour leur proposer un montage qui correspond vraiment à leur identité.
                     </p>
                 </div>
@@ -84,40 +99,54 @@
     <section id="services" class="section">
         <div class="container reveal">
             <div class="section-title">
-                <h2>Mes <span class="highlight">Services</span></h2>
-                <p class="text-muted">Des prestations simples, flexibles et pensées pour le format YouTube.</p>
+                <h2 data-i18n="services_title">Mes <span class="highlight">Services</span></h2>
+                <p class="text-muted" data-i18n="services_desc">Des prestations simples, flexibles et pensées pour le format YouTube.</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-film"></i>
-                    <h3>Montage YouTube</h3>
-                    <p>Dynamisation de vos vidéos, suppression des temps morts et adaptation totale à votre style de création.</p>
+                    <h3 data-i18n="srv1_title">Montage YouTube</h3>
+                    <p data-i18n="srv1_desc">Dynamisation de vos vidéos, suppression des temps morts et adaptation totale à votre style de création.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-gamepad"></i>
-                    <h3>Spécialisé Gaming</h3>
-                    <p>Mise en valeur de vos gameplays, let's plays ou best-of avec un rythme adapté pour garder l'audience engagée.</p>
+                    <h3 data-i18n="srv2_title">Spécialisé Gaming</h3>
+                    <p data-i18n="srv2_desc">Mise en valeur de vos gameplays, let's plays ou best-of avec un rythme adapté pour garder l'audience engagée.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-mobile-alt"></i>
-                    <h3>Classique & Shorts</h3>
-                    <p>Format horizontal classique ou format vertical très nerveux (Shorts, TikTok, Reels) selon vos besoins.</p>
+                    <h3 data-i18n="srv3_title">Classique & Shorts</h3>
+                    <p data-i18n="srv3_desc">Format horizontal classique ou format vertical très nerveux (Shorts, TikTok, Reels) selon vos besoins.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-image"></i>
-                    <h3>Miniatures (Option)</h3>
-                    <p>Création de miniatures accrocheuses, claires et secondaires, pour maximiser le taux de clic de vos vidéos.</p>
+                    <h3 data-i18n="srv4_title">Miniatures (Option)</h3>
+                    <p data-i18n="srv4_desc">Création de miniatures accrocheuses, claires et secondaires, pour maximiser le taux de clic de vos vidéos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="video-demo" class="section bg-secondary">
+    <section id="portfolio" class="section bg-secondary">
         <div class="container reveal">
             <div class="section-title">
-                <h2>Vidéo de <span class="highlight">Présentation</span></h2>
-                <p class="text-muted">Un aperçu direct de mon travail et de mon univers de montage.</p>
+                <h2 data-i18n="portfolio_title">Mon <span class="highlight">Portfolio</span></h2>
+                <p class="text-muted" data-i18n="portfolio_desc">Un aperçu de mes réalisations.</p>
+            </div>
+            
+            <div class="portfolio-empty">
+                <i class="fas fa-folder-open"></i>
+                <p data-i18n="portfolio_empty">Aucun projet disponible pour le moment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-demo" class="section">
+        <div class="container reveal">
+            <div class="section-title">
+                <h2 data-i18n="video_title">Vidéo de <span class="highlight">Présentation</span></h2>
+                <p class="text-muted" data-i18n="video_desc">Un aperçu direct de mon travail et de mon univers de montage.</p>
             </div>
             
             <div class="video-wrapper">
@@ -132,11 +161,11 @@
         </div>
     </section>
 
-    <section id="networks" class="section">
+    <section id="networks" class="section bg-secondary">
         <div class="container reveal">
             <div class="section-title">
-                <h2>Mes <span class="highlight">Réseaux</span></h2>
-                <p class="text-muted">Pour me contacter ou suivre mon travail.</p>
+                <h2 data-i18n="networks_title">Mes <span class="highlight">Réseaux</span></h2>
+                <p class="text-muted" data-i18n="networks_desc">Pour me contacter ou suivre mon travail.</p>
             </div>
             <div class="networks-grid">
                 <a href="https://discord.com/users/rexbs3" target="_blank" class="network-card">
@@ -154,7 +183,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Rex. Tous droits réservés.</p>
+        <p data-i18n="footer_text">&copy; 2026 Rex. Tous droits réservés.</p>
     </footer>
 
     <button id="scrollTopBtn" class="scroll-top" aria-label="Remonter en haut">
