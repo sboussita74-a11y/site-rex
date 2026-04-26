@@ -1,7 +1,9 @@
 // --- Dictionnaire de traduction FR / EN ---
 const translations = {
     fr: {
-        lang_fr: "Français",
+        lang_short_fr: "🌐 FR", // Abréviations pour le bouton fermé
+        lang_short_en: "🌐 EN",
+        lang_fr: "Français",     // Menu déroulant
         lang_en: "Anglais",
         nav_home: "Accueil",
         nav_about: "À propos",
@@ -37,7 +39,9 @@ const translations = {
         footer_text: "&copy; 2026 Rex. Tous droits réservés."
     },
     en: {
-        lang_fr: "French",
+        lang_short_fr: "🌐 FR", // Restent FR/EN pour l'abréviation universelle
+        lang_short_en: "🌐 EN",
+        lang_fr: "French",      // Menu déroulant
         lang_en: "English",
         nav_home: "Home",
         nav_about: "About",
@@ -98,8 +102,8 @@ langOptions.forEach(option => {
         const selectedLang = e.target.getAttribute('data-lang');
         currentLang = selectedLang;
         
-        // Mettre à jour l'attribut du texte affiché dans le bouton
-        currentLangText.setAttribute('data-i18n', `lang_${selectedLang}`);
+        // Mettre à jour l'abréviation du bouton fermé (🌐 FR ou 🌐 EN)
+        currentLangText.setAttribute('data-i18n', `lang_short_${selectedLang}`);
         
         // Exécuter la traduction globale
         translatePage(selectedLang);

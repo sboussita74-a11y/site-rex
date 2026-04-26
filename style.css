@@ -37,31 +37,41 @@ a { text-decoration: none; color: inherit; }
 .container { max-width: 1000px; margin: 0 auto; }
 .text-muted { color: var(--text-muted); }
 
-/* --- Header & Nav --- */
+/* --- Header & Nav : Symétrie parfaite --- */
 header {
     position: fixed; top: 0; left: 0; width: 100%;
-    padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
     z-index: 1000; transition: all 0.4s ease;
 }
 
+/* Le flex: 1 de chaque côté garantit que le header-center est au milieu exact */
 .header-left { flex: 1; display: flex; align-items: center; }
 
 .header-center { 
-    flex: 3; display: flex; justify-content: flex-end; padding-right: 30px; 
+    flex: 0 0 auto; /* Prend uniquement la place nécessaire */
+    display: flex; 
+    justify-content: center; 
 }
 
 .header-right { 
-    display: flex; align-items: center; justify-content: flex-end; gap: 15px; 
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    gap: 20px; 
 }
 
 .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; text-shadow: none; }
 .logo span { color: var(--primary-blue); }
 
-/* TAILLE BARRE : Padding interne augmenté pour aérer */
+/* --- Barre de navigation (Large, propre, équilibrée) --- */
 .nav-container {
     background: rgba(18, 30, 61, 0.4);
     backdrop-filter: blur(10px);
-    padding: 15px 35px; /* Plus d'espace intérieur */
+    padding: 16px 45px; /* Padding augmenté */
     border-radius: 50px;
     transition: all 0.4s ease;
     border: 1px solid var(--border-color);
@@ -73,49 +83,67 @@ header.scrolled .nav-container {
     backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ESPACEMENT DES BOUTONS AUGMENTÉ */
-.nav-links { display: flex; align-items: center; list-style: none; gap: 25px; }
+/* Espacement régulier et NO-WRAP (Correction du retour à la ligne) */
+.nav-links { 
+    display: flex; 
+    align-items: center; 
+    list-style: none; 
+    gap: 32px; /* Espacement parfait entre les boutons */
+}
+
+.nav-links li {
+    flex-shrink: 0; /* Empêche les éléments de s'écraser */
+}
 
 .separator { width: 2px; height: 18px; background-color: rgba(255, 255, 255, 0.2); margin: 0; border-radius: 2px; }
 
 .nav-links a { 
-    font-weight: 600; color: var(--text-muted); 
-    padding: 10px 18px; border-radius: 25px; transition: var(--transition); 
+    font-weight: 600; 
+    color: var(--text-muted); 
+    padding: 10px 20px; 
+    border-radius: 25px; 
+    transition: var(--transition); 
+    white-space: nowrap; /* GARANTIT QUE LE TEXTE RESTE SUR UNE LIGNE */
 }
+
 .nav-links a:hover { color: #ffffff; }
 
-/* État Actif lors du Scroll */
+/* État Actif */
 .nav-links a.active {
     background: rgba(59, 130, 246, 0.2); color: var(--primary-blue); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
-/* --- Menu de Langue Sur Mesure --- */
+/* --- Bouton de Langue Isolé (Effet Glass) --- */
 .custom-lang-selector {
     position: relative;
     z-index: 1002;
 }
 
 .lang-btn {
-    background: transparent;
-    border: 1px solid rgba(59, 130, 246, 0.4);
+    background: rgba(18, 30, 61, 0.4); /* Même fond que la barre */
+    backdrop-filter: blur(10px); /* Même flou */
+    border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 12px 20px;
+    border-radius: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: 600;
-    font-family: inherit;
     font-size: 0.95rem;
     transition: var(--transition);
-    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+header.scrolled .lang-btn {
+    background: rgba(18, 30, 61, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .lang-btn:hover {
-    border-color: var(--primary-blue);
-    background: rgba(59, 130, 246, 0.1);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.15);
 }
 
 .lang-btn i {
@@ -127,6 +155,7 @@ header.scrolled .nav-container {
     transform: rotate(180deg);
 }
 
+/* Menu Déroulant Custom */
 .lang-dropdown {
     position: absolute;
     top: 130%;
@@ -157,6 +186,7 @@ header.scrolled .nav-container {
     transition: var(--transition);
     color: var(--text-muted);
     font-weight: 600;
+    text-align: left;
 }
 
 .lang-dropdown li:hover {
@@ -167,7 +197,7 @@ header.scrolled .nav-container {
 .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1001; }
 
 /* --- Boutons et Badges --- */
-.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 35px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 35px; font-weight: 600; cursor: pointer; transition: var(--transition); white-space: nowrap; }
 .btn-primary { background: var(--primary-blue); color: #ffffff; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
 .btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6); }
 
@@ -240,22 +270,29 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- Responsive --- */
-@media (max-width: 900px) {
-    .header-center { padding-right: 15px; }
+/* --- Responsive Adaptations --- */
+@media (max-width: 1200px) {
+    .nav-container { padding: 12px 30px; }
     .nav-links { gap: 15px; }
-    .nav-container { padding: 12px 20px; }
+}
+
+@media (max-width: 992px) {
+    header { grid-template-columns: auto 1fr auto; }
+    .header-center { display: none; /* Cache la barre principale sur tablette pour éviter la compression */ }
+    .menu-toggle { display: block; margin-left: 10px; }
+    
+    .nav-links { 
+        position: fixed; right: -100%; top: 85px; flex-direction: column; 
+        background: rgba(18, 30, 61, 0.95); backdrop-filter: blur(15px); 
+        width: 90%; max-width: 300px; text-align: center; padding: 25px 20px; 
+        gap: 15px; transition: 0.4s; border-radius: 20px; border: 1px solid var(--border-color); 
+        display: flex; /* Force l'affichage en colonne */
+    }
+    .nav-links.active { right: 5%; }
+    .separator { display: none; }
 }
 
 @media (max-width: 768px) {
-    .header-left { flex: none; }
-    .header-center { justify-content: flex-end; padding-right: 0; }
-    .nav-container { padding: 0; background: transparent; border: none; box-shadow: none; backdrop-filter: none; }
-    header.scrolled .nav-container { background: transparent; box-shadow: none; border: none; backdrop-filter: none; }
-    .separator { display: none; } 
-    .nav-links { position: fixed; right: -100%; top: 85px; flex-direction: column; background: rgba(18, 30, 61, 0.95); backdrop-filter: blur(15px); width: 90%; max-width: 300px; text-align: center; padding: 25px 20px; gap: 15px; transition: 0.4s; border-radius: 20px; border: 1px solid var(--border-color); }
-    .nav-links.active { right: 5%; }
-    .menu-toggle { display: block; margin-left: 5px; }
     .hero-container h1 { font-size: 2.5rem; }
     .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
 }
