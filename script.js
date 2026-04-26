@@ -23,6 +23,26 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// --- Gestion du Bouton Retour en Haut ---
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+    // Affiche le bouton après 300px de défilement vers le bas
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    // Remonte en haut de la page de manière fluide
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 // --- Animations d'apparition (Intersection Observer) ---
 const reveals = document.querySelectorAll('.reveal');
 
