@@ -22,29 +22,30 @@
             <nav class="nav-container">
                 <ul class="nav-links">
                     <li><a href="#hero" class="active" data-i18n="nav_home">Accueil</a></li>
+                    
                     <li class="separator"></li>
+                    
                     <li><a href="#about" data-i18n="nav_about">À propos</a></li>
-                    <li class="separator"></li>
                     <li><a href="#services" data-i18n="nav_services">Services</a></li>
-                    <li class="separator"></li>
                     <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
-                    <li class="separator"></li>
                     <li><a href="#video-demo" data-i18n="nav_video">Présentation</a></li>
-                    <li class="separator"></li>
                     <li><a href="#networks" data-i18n="nav_networks">Réseaux</a></li>
                 </ul>
-                
-                <div class="lang-divider"></div>
-                <div class="lang-selector">
-                    <select id="langSwitch">
-                        <option value="fr">FR</option>
-                        <option value="en">EN</option>
-                    </select>
-                </div>
             </nav>
         </div>
 
         <div class="header-right">
+            <div class="custom-lang-selector">
+                <button class="lang-btn" id="langBtn">
+                    <span id="currentLangText" data-i18n="lang_fr">Français</span> 
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="lang-dropdown" id="langDropdown">
+                    <li data-lang="fr" data-i18n="lang_fr">Français</li>
+                    <li data-lang="en" data-i18n="lang_en">Anglais</li>
+                </ul>
+            </div>
+
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>

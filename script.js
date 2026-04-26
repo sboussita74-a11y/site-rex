@@ -1,6 +1,8 @@
 // --- Dictionnaire de traduction FR / EN ---
 const translations = {
     fr: {
+        lang_fr: "Français",
+        lang_en: "Anglais",
         nav_home: "Accueil",
         nav_about: "À propos",
         nav_services: "Services",
@@ -35,6 +37,8 @@ const translations = {
         footer_text: "&copy; 2026 Rex. Tous droits réservés."
     },
     en: {
+        lang_fr: "French",
+        lang_en: "English",
         nav_home: "Home",
         nav_about: "About",
         nav_services: "Services",
@@ -70,20 +74,48 @@ const translations = {
     }
 };
 
-// --- Gestion du Lang Switcher ---
-const langSwitch = document.getElementById('langSwitch');
+// --- Menu Langue Personnalisé ---
+const langWrapper = document.querySelector('.custom-lang-selector');
+const langBtn = document.getElementById('langBtn');
+const langOptions = document.querySelectorAll('.lang-dropdown li');
+const currentLangText = document.getElementById('currentLangText');
+let currentLang = 'fr'; // Langue par défaut
 
-langSwitch.addEventListener('change', (e) => {
-    const selectedLang = e.target.value;
-    const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-    
-    elementsToTranslate.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[selectedLang][key]) {
-            el.innerHTML = translations[selectedLang][key];
-        }
+// Ouvrir / Fermer le menu déroulant
+langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langWrapper.classList.toggle('active');
+});
+
+// Fermer le menu si on clique ailleurs
+document.addEventListener('click', () => {
+    langWrapper.classList.remove('active');
+});
+
+// Gérer le changement de langue
+langOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+        const selectedLang = e.target.getAttribute('data-lang');
+        currentLang = selectedLang;
+        
+        // Mettre à jour l'attribut du texte affiché dans le bouton
+        currentLangText.setAttribute('data-i18n', `lang_${selectedLang}`);
+        
+        // Exécuter la traduction globale
+        translatePage(selectedLang);
     });
 });
+
+// Fonction de traduction
+function translatePage(lang) {
+    const elementsToTranslate = document.querySelectorAll('[data-i18n]');
+    elementsToTranslate.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+}
 
 // --- Menu Mobile ---
 const menuToggle = document.querySelector('.menu-toggle');
