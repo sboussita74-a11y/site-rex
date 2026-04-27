@@ -22,14 +22,14 @@ body {
 }
 html { scroll-behavior: smooth; }
 
-/* --- Effet Lumineux (Curseur Souris) : Adouci et réduit --- */
+/* --- Effet Lumineux (Curseur Souris) --- */
 #cursor-glow {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100px; /* Réduit pour être plus discret */
-    height: 100px; /* Réduit */
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 60%); /* Opacité fortement diminuée */
+    width: 100px; 
+    height: 100px; 
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 60%); 
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -38,26 +38,22 @@ html { scroll-behavior: smooth; }
     transition: opacity 0.4s ease;
     mix-blend-mode: screen;
 }
-body:hover #cursor-glow {
-    opacity: 1; 
-}
+body:hover #cursor-glow { opacity: 1; }
 
-/* --- Effets Lumineux en fond : Intensifiés et Animés --- */
+/* --- Effets Lumineux en fond --- */
 .glow-bg {
     position: fixed; width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
     border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none; 
-    opacity: 0.9; /* Intensité globale augmentée */
+    opacity: 0.9; 
 }
-/* Lumière 1 avec animation */
 .glow-1 { 
     top: -10%; left: -10%; 
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%); /* Plus de lumière bleue */
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%); 
     animation: floatGlow1 12s infinite alternate ease-in-out;
 }
-/* Lumière 2 avec animation inversée */
 .glow-2 { 
     bottom: -10%; right: -10%; 
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%); /* Plus de lumière bleue */
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%); 
     animation: floatGlow2 15s infinite alternate ease-in-out;
 }
 
@@ -96,7 +92,6 @@ header {
     justify-content: center; 
 }
 
-/* On permet à la partie droite de s'étendre si le bouton langue devient très large */
 .header-right { 
     flex: 1; 
     display: flex; 
@@ -112,7 +107,7 @@ header {
 .nav-container {
     background: rgba(18, 30, 61, 0.4);
     backdrop-filter: blur(10px);
-    padding: 14px 45px; 
+    padding: 14px 45px; /* Détermine la hauteur de la barre */
     border-radius: 50px;
     transition: all 0.4s ease;
     border: 1px solid var(--border-color);
@@ -132,23 +127,20 @@ header.scrolled .nav-container {
 }
 
 .nav-links li { flex-shrink: 0; }
-
 .separator { width: 2px; height: 18px; background-color: rgba(255, 255, 255, 0.2); margin: 0; border-radius: 2px; }
 
 .nav-links a { 
     font-weight: 600; color: var(--text-muted); padding: 10px 20px; border-radius: 25px; transition: var(--transition); white-space: nowrap; 
 }
 .nav-links a:hover { color: #ffffff; }
-
 .nav-links a.active {
     background: rgba(59, 130, 246, 0.2); color: var(--primary-blue); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
-/* --- Bouton de Langue Isolé (La largeur est gérée en JS pour copier celle du nav) --- */
+/* --- Bouton de Langue Isolé et Auto-adaptable --- */
 .custom-lang-selector {
     position: relative;
     z-index: 1002;
-    height: 100%;
 }
 
 .lang-btn {
@@ -156,16 +148,17 @@ header.scrolled .nav-container {
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 14px 26px; /* Même hauteur (padding vertical 14px) */
+    padding: 14px 26px; /* Même padding vertical que nav-container (14px) pour alignement parfait */
     border-radius: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Permet d'écarter le texte de la flèche quand le bouton s'élargit */
+    gap: 15px; /* Espace fixe entre le texte et la flèche */
     font-weight: 600;
     font-size: 0.95rem;
-    transition: width 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
     white-space: nowrap;
+    width: auto; /* Largeur basée sur le contenu, non étirée */
 }
 
 .lang-btn-content {
@@ -200,12 +193,12 @@ header.scrolled .lang-btn {
     transform: rotate(180deg);
 }
 
-/* Menu Déroulant (Dropdown) s'adapte à la largeur du bouton parent */
+/* --- Menu Déroulant Réparé --- */
 .lang-dropdown {
     position: absolute;
-    top: 130%;
-    right: 0;
-    width: 100%; /* Prend toute la largeur du nouveau grand bouton */
+    top: calc(100% + 15px); /* Positionnement propre sous le bouton */
+    right: 0; /* Aligné à droite du bouton */
+    min-width: 150px; /* Largeur minimum pour ne pas couper le texte */
     background: rgba(18, 30, 61, 0.95);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(59, 130, 246, 0.3);
@@ -217,6 +210,7 @@ header.scrolled .lang-btn {
     opacity: 0;
     transform: translateY(-15px);
     transition: all 0.3s ease;
+    z-index: 1010; /* Z-index élevé pour passer au-dessus de tout */
 }
 
 .custom-lang-selector.active .lang-dropdown {
@@ -231,7 +225,8 @@ header.scrolled .lang-btn {
     transition: var(--transition);
     color: var(--text-muted);
     font-weight: 600;
-    text-align: center; /* Centré pour être propre dans le menu élargi */
+    text-align: left; /* Texte aligné à gauche pour un look classique */
+    white-space: nowrap; /* Empêche le texte de se couper sur deux lignes */
 }
 
 .lang-dropdown li:hover {
@@ -331,9 +326,6 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
     }
     .nav-links.active { right: 5%; }
     .separator { display: none; }
-    
-    /* Sur mobile, on enlève la largeur forcée du bouton langue */
-    .lang-btn { width: auto !important; }
 }
 
 @media (max-width: 768px) {

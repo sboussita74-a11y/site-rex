@@ -170,22 +170,7 @@ const translations = {
     }
 };
 
-// --- Synchro dynamique de la largeur (Barre nav -> Bouton Langue) ---
-function syncLangBtnWidth() {
-    const navContainer = document.getElementById('mainNav');
-    const langBtn = document.getElementById('langBtn');
-    
-    // On l'applique uniquement sur Desktop pour ne pas casser la vue mobile
-    if(window.innerWidth > 992 && navContainer && langBtn) {
-        const navWidth = navContainer.offsetWidth;
-        langBtn.style.width = navWidth + 'px';
-    } else if (langBtn) {
-        langBtn.style.width = 'auto'; // Reset pour le mobile
-    }
-}
-// Synchroniser au chargement et lors du redimensionnement de la fenêtre
-window.addEventListener('load', syncLangBtnWidth);
-window.addEventListener('resize', syncLangBtnWidth);
+// L'ancienne fonction "syncLangBtnWidth" a été supprimée car elle forçait la largeur du bouton.
 
 // --- Effet Halo Souris (Glow adouci) ---
 const cursorGlow = document.getElementById('cursor-glow');
