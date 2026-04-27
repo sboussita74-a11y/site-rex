@@ -22,33 +22,53 @@ body {
 }
 html { scroll-behavior: smooth; }
 
-/* --- Nouvel Effet Lumineux (Curseur Souris) --- */
+/* --- Effet Lumineux (Curseur Souris) : Adouci et réduit --- */
 #cursor-glow {
     position: fixed;
     top: 0;
     left: 0;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
+    width: 100px; /* Réduit pour être plus discret */
+    height: 100px; /* Réduit */
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 60%); /* Opacité fortement diminuée */
     border-radius: 50%;
-    pointer-events: none; /* Laisse passer les clics au travers */
+    pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    opacity: 0; /* Caché jusqu'au premier mouvement */
+    opacity: 0; 
     transition: opacity 0.4s ease;
     mix-blend-mode: screen;
 }
 body:hover #cursor-glow {
-    opacity: 1; /* Apparaît quand la souris est sur la page */
+    opacity: 1; 
 }
 
-/* --- Effets Lumineux (Glow) Modernes en fond (Fixes) --- */
+/* --- Effets Lumineux en fond : Intensifiés et Animés --- */
 .glow-bg {
     position: fixed; width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
-    border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none; opacity: 0.6;
+    border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none; 
+    opacity: 0.9; /* Intensité globale augmentée */
 }
-.glow-1 { top: -10%; left: -10%; background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%); }
-.glow-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%); }
+/* Lumière 1 avec animation */
+.glow-1 { 
+    top: -10%; left: -10%; 
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%); /* Plus de lumière bleue */
+    animation: floatGlow1 12s infinite alternate ease-in-out;
+}
+/* Lumière 2 avec animation inversée */
+.glow-2 { 
+    bottom: -10%; right: -10%; 
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%); /* Plus de lumière bleue */
+    animation: floatGlow2 15s infinite alternate ease-in-out;
+}
+
+@keyframes floatGlow1 {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.05) translate(3%, 3%); }
+}
+@keyframes floatGlow2 {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.05) translate(-3%, -3%); }
+}
 
 h1, h2, h3 { font-weight: 800; color: #ffffff; text-shadow: 0 4px 15px rgba(255, 255, 255, 0.15); }
 .highlight { color: var(--primary-blue); text-shadow: 0 4px 25px rgba(59, 130, 246, 0.4); }
@@ -58,7 +78,7 @@ a { text-decoration: none; color: inherit; }
 .container { max-width: 1000px; margin: 0 auto; }
 .text-muted { color: var(--text-muted); }
 
-/* --- Header & Nav : Symétrie parfaite --- */
+/* --- Header & Nav --- */
 header {
     position: fixed; top: 0; left: 0; width: 100%;
     padding: 20px 5%; 
@@ -76,6 +96,7 @@ header {
     justify-content: center; 
 }
 
+/* On permet à la partie droite de s'étendre si le bouton langue devient très large */
 .header-right { 
     flex: 1; 
     display: flex; 
@@ -87,11 +108,11 @@ header {
 .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; z-index: 1001; text-shadow: none; }
 .logo span { color: var(--primary-blue); }
 
-/* --- Barre de navigation --- */
+/* --- Barre de navigation principale --- */
 .nav-container {
     background: rgba(18, 30, 61, 0.4);
     backdrop-filter: blur(10px);
-    padding: 14px 45px; /* PADDING HAUT/BAS FIXÉ A 14PX */
+    padding: 14px 45px; 
     border-radius: 50px;
     transition: all 0.4s ease;
     border: 1px solid var(--border-color);
@@ -123,7 +144,7 @@ header.scrolled .nav-container {
     background: rgba(59, 130, 246, 0.2); color: var(--primary-blue); box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
-/* --- Bouton de Langue Isolé (Hauteur identique, largeur équilibrée) --- */
+/* --- Bouton de Langue Isolé (La largeur est gérée en JS pour copier celle du nav) --- */
 .custom-lang-selector {
     position: relative;
     z-index: 1002;
@@ -135,16 +156,22 @@ header.scrolled .nav-container {
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 14px 26px; /* PADDING HAUT/BAS 14PX : HAUTEUR EXACTE QUE LA BARRE */
+    padding: 14px 26px; /* Même hauteur (padding vertical 14px) */
     border-radius: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px; /* Aère l'intérieur du bouton */
+    justify-content: space-between; /* Permet d'écarter le texte de la flèche quand le bouton s'élargit */
     font-weight: 600;
     font-size: 0.95rem;
-    transition: var(--transition);
+    transition: width 0.3s ease, background 0.3s ease, border-color 0.3s ease;
     white-space: nowrap;
+}
+
+.lang-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 header.scrolled .lang-btn {
@@ -157,7 +184,6 @@ header.scrolled .lang-btn {
     background: rgba(59, 130, 246, 0.15);
 }
 
-/* Icône SVG Customisée Bleue */
 .lang-icon {
     font-size: 1.1rem;
     color: var(--primary-blue);
@@ -174,18 +200,18 @@ header.scrolled .lang-btn {
     transform: rotate(180deg);
 }
 
-/* Menu Déroulant (Dropdown) */
+/* Menu Déroulant (Dropdown) s'adapte à la largeur du bouton parent */
 .lang-dropdown {
     position: absolute;
     top: 130%;
     right: 0;
+    width: 100%; /* Prend toute la largeur du nouveau grand bouton */
     background: rgba(18, 30, 61, 0.95);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 15px;
     padding: 10px 0;
     list-style: none;
-    min-width: 150px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
@@ -205,7 +231,7 @@ header.scrolled .lang-btn {
     transition: var(--transition);
     color: var(--text-muted);
     font-weight: 600;
-    text-align: left;
+    text-align: center; /* Centré pour être propre dans le menu élargi */
 }
 
 .lang-dropdown li:hover {
@@ -305,10 +331,13 @@ footer { text-align: center; padding: 30px; background: rgba(6, 11, 25, 0.9); co
     }
     .nav-links.active { right: 5%; }
     .separator { display: none; }
+    
+    /* Sur mobile, on enlève la largeur forcée du bouton langue */
+    .lang-btn { width: auto !important; }
 }
 
 @media (max-width: 768px) {
     .hero-container h1 { font-size: 2.5rem; }
     .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
-    #cursor-glow { display: none; /* Désactivé sur mobile pour la performance */ } 
+    #cursor-glow { display: none; } 
 }

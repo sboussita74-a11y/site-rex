@@ -21,7 +21,7 @@
         </div>
         
         <div class="header-center">
-            <nav class="nav-container">
+            <nav class="nav-container" id="mainNav">
                 <ul class="nav-links">
                     <li><a href="#hero" class="active" data-i18n="nav_home">Accueil</a></li>
                     
@@ -39,14 +39,17 @@
         <div class="header-right">
             <div class="custom-lang-selector">
                 <button class="lang-btn" id="langBtn">
-                    <i class="fas fa-globe lang-icon"></i>
-                    <span id="currentLangText" data-i18n="lang_short_fr">FR</span> 
+                    <div class="lang-btn-content">
+                        <i class="fas fa-globe lang-icon"></i>
+                        <span id="currentLangText" data-i18n="lang_short_fr">FR</span>
+                    </div>
                     <i class="fas fa-chevron-down arrow-icon"></i>
                 </button>
                 <ul class="lang-dropdown" id="langDropdown">
                     <li data-lang="fr" data-i18n="lang_fr">Français</li>
                     <li data-lang="en" data-i18n="lang_en">Anglais</li>
                     <li data-lang="es" data-i18n="lang_es">Espagnol</li>
+                    <li data-lang="it" data-i18n="lang_it">Italien</li>
                 </ul>
             </div>
 
@@ -59,8 +62,6 @@
             <div class="profile-wrapper">
                 <img src="https://i.imgur.com/3vHkohu.jpeg" 
                      alt="" 
-                     width="150" 
-                     height="150" 
                      class="profile-pic" 
                      style="display: block; width: 150px; height: 150px; object-fit: cover;"
                      crossorigin="anonymous">
